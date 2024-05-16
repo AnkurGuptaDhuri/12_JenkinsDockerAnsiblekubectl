@@ -5,7 +5,7 @@ pipeline {
         stage('checkout') {
             steps {
                 echo 'Stage1: Checkout from GITHUB'
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AnkurGuptaDhuri/python-docker-jenkins.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AnkurGuptaDhuri/12_JenkinsDockerAnsiblekubectl.git']])
             }
         }
         stage('Build Docker Image from Dockerfile') {
