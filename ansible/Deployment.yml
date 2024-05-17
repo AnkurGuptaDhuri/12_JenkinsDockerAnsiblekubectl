@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mydevops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+     app: mydevops
+  template:
+    metadata:
+      labels:
+        app: mydevops
+    spec:
+      container:
+        - name: mydevops
+          image: ankur5yk/12_flaskjenkinsansiblekubernete
+          imagePullPolicy: Always
+          ports: 
+           - containerPort: 5000

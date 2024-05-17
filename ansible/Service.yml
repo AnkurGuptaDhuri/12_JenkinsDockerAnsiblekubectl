@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mydevops - name of service
+  labels:
+    app: mydevops
+spec:
+  ports:
+   - port: 8080
+     targetport: 5000          #container port
+     nodePort: 31200
+  selector:
+    app: mydevops
+  type: LoadBalancer            #specify the service type, it needs nodePort or clusterIP
+  

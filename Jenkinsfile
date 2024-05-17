@@ -48,6 +48,18 @@ pipeline {
             	}
 	        }
         }
+        stage('Ansible: Execute the ansible commands in kubernetes webserver'){
+            steps {
+		        sshagent(['ansible-ubuntu']) {
+                    // some block
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.44.21 cd /home/ubuntu/ansible'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.44.21 ansible-playbook ansible.yml'
+                	sh 'scp -r /var/lib/jenkins/workspace/12_FlaskJenkinsAnsibleKubernetes/* ubuntu@172.31.44.21:/home/ubuntu'
+            	}
+	        }
+        }
+
+
 
     }
 }

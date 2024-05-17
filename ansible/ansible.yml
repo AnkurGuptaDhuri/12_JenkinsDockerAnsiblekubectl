@@ -1,0 +1,12 @@
+---
+ - name: install docker in kubernetes
+   host: all
+   become: true
+   tasks:
+      - name: create new deployment in kubernetes with Deployment.yml
+        command: kubectl apply -f /home/ubuntu/ansible/Deployment.yml
+      - name: Execute the service - load Balancer
+        command: kubectl apply -f /home/ubuntu/ansible/Service.yml
+        
+
+   
