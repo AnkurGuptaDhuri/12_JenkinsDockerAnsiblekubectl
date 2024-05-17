@@ -57,7 +57,7 @@ pipeline {
 		        sshagent(['ansible-ubuntu']) {
                     // some block
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP} cd /home/ubuntu/ansible"
-                    sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP} ansible-playbook ansible.yml"
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP} ansible-playbook ./ansible/ansible.yml"
             	}
 	        }
         }
