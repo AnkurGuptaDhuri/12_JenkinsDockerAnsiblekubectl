@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        AnsibleServerIP = "13.53.118.28"
+        kubectlServerIP = "172.31.34.235"
+    }
 
     stages {
         stage('checkout') {
@@ -43,8 +47,8 @@ pipeline {
             steps {
 		        sshagent(['ansible-ubuntu']) {
                     // some block
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.44.21'
-                	sh 'scp -r /var/lib/jenkins/workspace/12_FlaskJenkinsAnsibleKubernetes/* ubuntu@172.31.44.21:/home/ubuntu'
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP}"
+                	sh "scp -r /var/lib/jenkins/workspace/12_FlaskJenkinsAnsibleKubernetes/* ubuntu@${env.AnsibleServerIP}:/home/ubuntu"
             	}
 	        }
         }
@@ -52,9 +56,8 @@ pipeline {
             steps {
 		        sshagent(['ansible-ubuntu']) {
                     // some block
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.44.21 cd /home/ubuntu/ansible'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.44.21 ansible-playbook ansible.yml'
-                	sh 'scp -r /var/lib/jenkins/workspace/12_FlaskJenkinsAnsibleKubernetes/* ubuntu@172.31.44.21:/home/ubuntu'
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP} cd /home/ubuntu/ansible"
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@${env.AnsibleServerIP} ansible-playbook ansible.yml"
             	}
 	        }
         }
