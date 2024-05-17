@@ -1,6 +1,6 @@
 ---
 - name: install docker in kubernetes
-  host: node     #server details are defined in the /etc/ansible/hosts file of ansible server.
+  hosts: node     #server details are defined in the /etc/ansible/hosts file of ansible server.
   become: true
 
   tasks:
